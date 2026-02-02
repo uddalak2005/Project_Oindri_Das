@@ -22,6 +22,12 @@
   font-style: normal;
 }
 
+.satoshi {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
 .hero-section {
   width: 100%;
   min-height: calc(100vh - 80px);
@@ -62,6 +68,20 @@
   background-position: center;
   background-repeat: no-repeat;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-section {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  /* adjust navbar height */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
