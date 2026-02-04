@@ -9,20 +9,14 @@ const AboutSection = () => {
 
     return (
         <div className="about-section bg-[#f3f3f3] p-2">
-            <div className="w-screen">
+            <div className="">
 
-                <div className="w-screen flex flex-col justify-between p-4">
+                <div className=" flex flex-col justify-between p-4">
                     <div>
                         <div className="text-5xl flex satoshi">
                             <p className="text-6xl font-black">*</p>
                             About Me
                         </div>
-
-                        {/* <div className="text-sm zalando-sans px-2 mb-5">
-                            I specialize in transforming complex ideas into clear, elegant digital solutions.
-                            My work blends thoughtful design with strategic problem-solving to create experiences
-                            that are not only visually refined but also highly functional.
-                        </div> */}
                     </div>
 
                     <div className="bg-white rounded-3xl flex-row p-3 mb-2">

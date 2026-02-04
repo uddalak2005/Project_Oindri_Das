@@ -31,6 +31,15 @@ const HeroSection = () => {
                                 Third-year Psychology student, Research Associate, and Indian Classical Dancer on a journey where science and art converge.
                             </p>
                         </div>
+                        <div className="mt-40 p-3 flex items-center">
+                            <p className="text-black text-2xl font-bold underline">
+                                Scroll Down
+
+                            </p>
+                            <span class="material-symbols-outlined text-black">
+                                arrow_cool_down
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div className="w-2/5 hero-image p-5" >

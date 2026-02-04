@@ -9,9 +9,9 @@ const AboutSection = () => {
 
     return (
         <div className=" bg-[#f3f3f3] p-2" >
-            <div className="w-screen">
+            <div className="">
 
-                <div className="w-screen flex flex-col justify-between p-5">
+                <div className=" flex flex-col justify-between p-5">
                     <div>
                         <div className="text-5xl flex satoshi">
                             <p className="text-6xl font-black">*</p>

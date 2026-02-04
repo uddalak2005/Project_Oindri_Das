@@ -5,6 +5,11 @@ import HeroSectionMobile from './pages/HeroSectionMobile.jsx';
 import AboutSection from './pages/AboutSection.jsx';
 import AboutSectionMobile from "./pages/AboutSectionMobile.jsx"
 import AboutSectionTablet from './pages/AboutSectionTablet.jsx';
+import AcademicsSection from './pages/AcademicsSection.jsx';
+import AchievementsSection from './pages/AchievementsSection.jsx';
+import PublicationsSection from './pages/PublicationsSection.jsx';
+import GallerySection from "./pages/GallerySection.jsx"
+import Footer from './pages/Footer.jsx';
 
 const App = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -44,6 +49,17 @@ const App = () => {
       ) : (
         <AboutSection />
       )}
+
+      <AcademicsSection />
+
+      <AchievementsSection />
+
+      <PublicationsSection />
+
+      <GallerySection />
+
+      <Footer />
+
     </div>
   );
 };

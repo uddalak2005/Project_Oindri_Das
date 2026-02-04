@@ -1,0 +1,26 @@
+import React from 'react'
+
+const AcademinCard = ({ title, subtitle, year }) => {
+    return (
+        <div className="group flex justify-between items-center py-8 sm:px-6 border-b border-black/10 hover:bg-black/5 transition-all duration-300 cursor-pointer rounded-2xl gap-4">
+
+            {/* LEFT CONTENT */}
+            <div className="max-w-2xl">
+                <h3 className="sm:text-2xl text-base font-semibold satoshi mb-1">
+                    {title}
+                </h3>
+                <p className="text-black/60 text-base zalando-sans">
+                    {subtitle}
+                </p>
+            </div>
+
+            {/* RIGHT YEAR */}
+            <div className="text-3xl md:text-4xl font-bold satoshi tracking-tight google-sans-flex">
+                {year}
+            </div>
+
+        </div>
+    )
+}
+
+export default AcademinCard
