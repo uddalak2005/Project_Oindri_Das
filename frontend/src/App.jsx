@@ -3,12 +3,12 @@ import Navbar from './components/Navbar.jsx';
 import HeroSection from './pages/HeroSection.jsx';
 import HeroSectionMobile from './pages/HeroSectionMobile.jsx';
 import AboutSection from './pages/AboutSection.jsx';
-import AboutSectionMobile from "./pages/AboutSectionMobile.jsx"
+import AboutSectionMobile from "./pages/AboutSectionMobile.jsx";
 import AboutSectionTablet from './pages/AboutSectionTablet.jsx';
 import AcademicsSection from './pages/AcademicsSection.jsx';
 import AchievementsSection from './pages/AchievementsSection.jsx';
 import PublicationsSection from './pages/PublicationsSection.jsx';
-import GallerySection from "./pages/GallerySection.jsx"
+import GallerySection from "./pages/GallerySection.jsx";
 import Footer from './pages/Footer.jsx';
 
 const App = () => {
@@ -16,20 +16,14 @@ const App = () => {
   const [isTablet, setIsTablet] = useState(false);
 
   useEffect(() => {
-    // Function to check device type
     const checkDeviceType = () => {
       const width = window.innerWidth;
       setIsMobile(width < 768);
       setIsTablet(width >= 768 && width <= 1024);
     };
 
-    // Check initial window width
     checkDeviceType();
-
-    // Update on resize
     window.addEventListener('resize', checkDeviceType);
-
-    // Cleanup listener on unmount
     return () => window.removeEventListener('resize', checkDeviceType);
   }, []);
 
@@ -37,29 +31,52 @@ const App = () => {
     <div className="App">
       <Navbar />
 
-      {/* Hero Section - Conditional Rendering */}
-      {isTablet ? (<HeroSectionMobile />) :
-        isMobile ? <HeroSectionMobile /> : <HeroSection />}
+      {/* HOME */}
+      <section id="home">
+        {isTablet ? (
+          <HeroSectionMobile />
+        ) : isMobile ? (
+          <HeroSectionMobile />
+        ) : (
+          <HeroSection />
+        )}
+      </section>
 
-      {/* About Section - Conditional Rendering */}
-      {isMobile ? (
-        <AboutSectionMobile />
-      ) : isTablet ? (
-        <AboutSectionTablet />
-      ) : (
-        <AboutSection />
-      )}
+      {/* ABOUT */}
+      <section id="about">
+        {isMobile ? (
+          <AboutSectionMobile />
+        ) : isTablet ? (
+          <AboutSectionTablet />
+        ) : (
+          <AboutSection />
+        )}
+      </section>
 
-      <AcademicsSection />
+      {/* ACADEMICS */}
+      <section id="academics">
+        <AcademicsSection />
+      </section>
 
-      <AchievementsSection />
+      {/* ACHIEVEMENTS */}
+      <section id="achievements">
+        <AchievementsSection />
+      </section>
 
-      <PublicationsSection />
+      {/* PUBLICATIONS */}
+      <section id="publications">
+        <PublicationsSection />
+      </section>
 
-      <GallerySection />
+      {/* GALLERY */}
+      <section id="gallery">
+        <GallerySection />
+      </section>
 
-      <Footer />
-
+      {/* FOOTER / CONTACT */}
+      <section id="contact">
+        <Footer />
+      </section>
     </div>
   );
 };

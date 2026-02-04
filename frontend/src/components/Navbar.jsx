@@ -103,36 +103,42 @@ function NavScrollExample() {
                         >
                             <Nav.Link
                                 eventKey="home"
+                                href="#home"
                                 className={`zalando-sans mx-1 nav-link-custom ${activeKey === 'home' ? 'active' : ''}`}
                             >
                                 Home
                             </Nav.Link>
                             <Nav.Link
                                 eventKey="about"
+                                href="#about"
                                 className={`zalando-sans mx-1 nav-link-custom ${activeKey === 'about' ? 'active' : ''}`}
                             >
-                                About Me
+                                About
                             </Nav.Link>
                             <Nav.Link
-                                eventKey="psychology"
+                                eventKey="academics"
+                                href="#academics"
                                 className={`zalando-sans mx-1 nav-link-custom ${activeKey === 'psychology' ? 'active' : ''}`}
                             >
-                                Psychology
-                            </Nav.Link>
-                            <Nav.Link
-                                eventKey="dance"
-                                className={`zalando-sans mx-1 nav-link-custom ${activeKey === 'dance' ? 'active' : ''}`}
-                            >
-                                Dance
+                                Academics
                             </Nav.Link>
                             <Nav.Link
                                 eventKey="achievements"
-                                className={`zalando-sans mx-1 nav-link-custom ${activeKey === 'achievements' ? 'active' : ''}`}
+                                href="#achievements"
+                                className={`zalando-sans mx-1 nav-link-custom ${activeKey === 'dance' ? 'active' : ''}`}
                             >
                                 Achievements
                             </Nav.Link>
                             <Nav.Link
+                                eventKey="publications"
+                                href="#publications"
+                                className={`zalando-sans mx-1 nav-link-custom ${activeKey === 'publications' ? 'active' : ''}`}
+                            >
+                                Publications
+                            </Nav.Link>
+                            <Nav.Link
                                 eventKey="gallery"
+                                href="#gallery"
                                 className={`zalando-sans mx-1 nav-link-custom ${activeKey === 'gallery' ? 'active' : ''}`}
                             >
                                 Gallery
@@ -140,14 +146,16 @@ function NavScrollExample() {
 
                         </Nav>
 
-                        <div className="">
+                        <a
+                            href="mailto:yourmail@gmail.com"
+                            style={{ textDecoration: 'none' }}>
                             <div className="zalando-sans d-flex gap-2 justify-center items-center bg-black rounded-full p-2.5 px-3 text-white connect-btn">
                                 <p className="m-0 p-0">Lets Connect</p>
                                 <div className="material-symbols-outlined">
                                     north_east
                                 </div>
                             </div>
-                        </div>
+                        </a>
 
                     </Navbar.Collapse>
                 </Container>

@@ -13,7 +13,7 @@ const Footer = () => {
                         Let’s Connect<br></br>There
                     </p>
 
-                    <p className="mt-6 max-w-md text-white/70 md:text-base sm:text-lg">
+                    <p className="mt-6 max-w-md text-white/70 text-sm md:text-base sm:text-lg">
                         Open to collaborations in research, academics, creative projects,
                         and meaningful work that creates impact.
                     </p>
