@@ -35,7 +35,7 @@ const PublicationsSection = () => {
                         </span>
                     </button>
 
-                    <p className="text-lg leading-relaxed text-black/70 zalando-sans max-w-md">
+                    <p className="text-lg leading-relaxed text-black/70 zalando-sans max-w-md text-center">
                         From studying behavioral patterns to analyzing psychological rehabilitation,
                         my research focuses on understanding human responses in structured environments.
                         Each publication reflects a step toward evidence-based, socially impactful psychology.
