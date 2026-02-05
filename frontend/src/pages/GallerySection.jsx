@@ -1,7 +1,34 @@
-import AchievementGalleryCard from "../components/AchievementGalleryCard";
+import { useEffect, useState } from "react"
+import AchievementGalleryCard from "../components/AchievementGalleryCard"
 import galleryBg from "../assets/GalleryBG.png"
+import { sanityClient, urlFor } from '../sanityClient.js' // Adjust path as needed
 
 const GallerySection = () => {
+    const [galleryItems, setGalleryItems] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        const fetchGallery = async () => {
+            try {
+                const query = `*[_type == "gallery"] | order(year desc) {
+                    _id,
+                    image,
+                    category,
+                    caption,
+                    year
+                }`
+                const data = await sanityClient.fetch(query)
+                setGalleryItems(data)
+            } catch (error) {
+                console.error('Error fetching gallery:', error)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchGallery()
+    }, [])
+
     return (
         <section
             className="
@@ -33,40 +60,43 @@ const GallerySection = () => {
 
                 {/* Scrolling Track */}
                 <div className="relative w-full overflow-hidden">
-                    <div className="marquee-track">
-
-                        {[...Array(2)].map((_, i) => (
-                            <div key={i} className="flex gap-8">
-                                <AchievementGalleryCard
-                                    image="https://images.unsplash.com/photo-1523050854058-8df90110c9f1"
-                                    category="Education"
-                                    caption="Academic Excellence & Merit Recognition"
-                                />
-
-                                <AchievementGalleryCard
-                                    image="https://images.unsplash.com/photo-1581093588401-12c8d6f8e1d1"
-                                    category="Research"
-                                    caption="Behavioral Research & Psychological Studies"
-                                />
-
-                                <AchievementGalleryCard
-                                    image="https://images.unsplash.com/photo-1518837695005-2083093ee35b"
-                                    category="Dance"
-                                    caption="Classical & Contemporary Performance Practice"
-                                />
-                            </div>
-                        ))}
-
-                    </div>
+                    {loading ? (
+                        <div className="flex justify-center items-center py-20">
+                            <p className="text-lg text-black/50 zalando-sans">Loading gallery...</p>
+                        </div>
+                    ) : galleryItems.length > 0 ? (
+                        <div className="marquee-track">
+                            {[...Array(2)].map((_, i) => (
+                                <div key={i} className="flex gap-8">
+                                    {galleryItems.map((item) => (
+                                        <AchievementGalleryCard
+                                            key={`${item._id}-${i}`}
+                                            image={urlFor(item.image).url()}
+                                            category={item.category.charAt(0).toUpperCase() + item.category.slice(1)}
+                                            caption={item.caption}
+                                        />
+                                    ))}
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="flex flex-col justify-center items-center py-20">
+                            <span className="material-symbols-outlined text-black/20 text-6xl mb-4">
+                                photo_library
+                            </span>
+                            <p className="text-xl font-semibold text-black/60 satoshi mb-2">
+                                No Gallery Items Yet
+                            </p>
+                            <p className="text-base text-black/40 zalando-sans text-center max-w-md">
+                                Visual content will be featured here soon.
+                            </p>
+                        </div>
+                    )}
                 </div>
-
-
-
-
 
             </div>
         </section>
     )
 }
 
-export default GallerySection;
+export default GallerySection

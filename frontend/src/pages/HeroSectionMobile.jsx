@@ -1,16 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import heroImg from "../assets/hero_image.jpg";
 import FadeContent from "../components/FadeContent.jsx";
 import heroBg from "../assets/hero_bg.jpg"
+import { sanityClient, urlFor } from '../sanityClient.js' // Adjust path as needed
 
 const HeroSectionMobile = () => {
+    const [heroImage, setHeroImage] = useState(null)
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        const fetchHeroImage = async () => {
+            try {
+                const query = `*[_type == "heroImage"][0] {
+                    image,
+                    altText
+                }`
+                const data = await sanityClient.fetch(query)
+                setHeroImage(data)
+            } catch (error) {
+                console.error('Error fetching hero image:', error)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchHeroImage()
+    }, [])
+
     return (
         <div className="hero-mobile w-full flex flex-col">
             {/* Top Image Section */}
             <div className="relative w-full min-h-[45vh] max-h-[50vh] overflow-hidden">
                 <img
-                    src={heroImg}
-                    alt="Oindri Das"
+                    src={heroImage?.image ? urlFor(heroImage.image).url() : heroImg}
+                    alt={heroImage?.altText || "Oindri Das"}
                     className="w-full h-full object-cover"
                 />
             </div>

@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import heroBg from "../assets/hero_bg_mandala.jpg";
-import heroImg from "../assets/hero_image.jpg"
+import heroImg from "../assets/hero_image.jpg";
 import FadeContent from "../components/FadeContent.jsx";
+import { sanityClient, urlFor } from '../sanityClient.js';
 
 const HeroSection = () => {
+    const [heroData, setHeroData] = useState(null);
+
+    useEffect(() => {
+        // Fetch the hero image data from Sanity
+        const fetchHeroImage = async () => {
+            try {
+                const data = await sanityClient.fetch(`*[_type == "heroImage"][0] {
+                    image,
+                    altText
+                }`);
+                setHeroData(data);
+            } catch (error) {
+                console.error("Error fetching hero image:", error);
+            }
+        };
+
+        fetchHeroImage();
+    }, []);
+
     return (
         <div
             className="hero-section"
@@ -11,9 +31,7 @@ const HeroSection = () => {
                 backgroundImage: `url(${heroBg})`,
             }}
         >
-            {/* 👉 Add your content here */}
             <div className="hero-content d-flex w-full">
-                {/* Edit stuff here */}
                 <div className="w-3/5 d-flex justify-center items-center p-5">
                     <div className="d-flex flex-col justify-center ">
                         <FadeContent blur={true} duration={1000} easing="ease-out" initialOpacity={0}>
@@ -34,18 +52,20 @@ const HeroSection = () => {
                         <div className="mt-40 p-3 flex items-center">
                             <p className="text-black text-2xl font-bold underline">
                                 Scroll Down
-
                             </p>
-                            <span class="material-symbols-outlined text-black">
+                            <span className="material-symbols-outlined text-black">
                                 arrow_cool_down
                             </span>
                         </div>
                     </div>
                 </div>
-                <div className="w-2/5 hero-image p-5" >
-                    <img src={heroImg} alt="" />
-                </div>
 
+                <div className="w-2/5 hero-image p-5">
+                    <img
+                        src={heroData?.image ? urlFor(heroData.image).url() : heroImg}
+                        alt={heroData?.altText || "Hero Image"}
+                    />
+                </div>
             </div>
         </div>
     );

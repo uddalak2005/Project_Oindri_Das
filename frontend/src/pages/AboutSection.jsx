@@ -1,11 +1,30 @@
-import React from 'react'
-import floralImg from '../assets/floral.png'
-import mindfullness from '../assets/mindfulness.png'
-import aboutImg from '../assets/about_img.jpeg'
-import ShuffleCards from '../components/ShuffleCards.jsx'
-import Bullet from "../assets/bullet.png"
+import React, { useState, useEffect } from 'react';
+import floralImg from '../assets/floral.png';
+import mindfullness from '../assets/mindfulness.png';
+import aboutImg from '../assets/about_img.jpeg';
+import ShuffleCards from '../components/ShuffleCards.jsx';
+import Bullet from "../assets/bullet.png";
+import { sanityClient, urlFor } from '../sanityClient.js';
 
 const AboutSection = () => {
+    const [profileImage, setProfileImage] = useState(null);
+
+    useEffect(() => {
+        const fetchProfileImage = async () => {
+            try {
+                const data = await sanityClient.fetch(`*[_type == "profileImage"][0] {
+                    image,
+                    altText
+                }`);
+                setProfileImage(data);
+            } catch (error) {
+                console.error("Error fetching profile image:", error);
+            }
+        };
+
+        fetchProfileImage();
+    }, []);
+
     return (
         <div className="about-section bg-[#f3f3f3] p-5" style={{ height: 'calc(100vh - 80px)' }}>
             <div className="grid grid-cols-2 gap-5 h-full">
@@ -44,7 +63,11 @@ const AboutSection = () => {
 
                         {/* Image Container */}
                         <div className='flex-1 overflow-hidden max-h-110 m-0 p-0'>
-                            <img src={aboutImg} alt="" className='w-full h-full object-cover rounded-2xl' />
+                            <img
+                                src={profileImage?.image ? urlFor(profileImage.image).url() : aboutImg}
+                                alt={profileImage?.altText || "Profile Image"}
+                                className='w-full h-full object-cover rounded-2xl'
+                            />
                         </div>
                     </div>
 
@@ -77,4 +100,4 @@ const AboutSection = () => {
     )
 }
 
-export default AboutSection
+export default AboutSection;

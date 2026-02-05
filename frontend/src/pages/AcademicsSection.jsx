@@ -1,8 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AcademicCard from '../components/AcademicCard.jsx'
 import SectionHeader from '../components/SectionHeader.jsx'
+import { sanityClient } from '../sanityClient.js' // Adjust path as needed
 
 const AcademicsSection = () => {
+    const [academics, setAcademics] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        const fetchAcademics = async () => {
+            try {
+                const query = `*[_type == "academics"] | order(yearStart desc) {
+                    _id,
+                    degree,
+                    institution,
+                    yearStart,
+                    yearEnd
+                }`
+                const data = await sanityClient.fetch(query)
+                setAcademics(data)
+            } catch (error) {
+                console.error('Error fetching academics:', error)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchAcademics()
+    }, [])
+
     return (
         <div className='bg-[#fff8f0] sm:p-5 p-4 py-5'>
             <SectionHeader
@@ -16,21 +42,20 @@ const AcademicsSection = () => {
             </div> */}
 
             <div className="w-full sm:p-3">
-                <AcademicCard
-                    title="Undergraduate Student in Psychology"
-                    subtitle="Third-year psychology student with a focus on behavioral studies and applied research."
-                    year="2022 – Present"
-                />
-                <AcademicCard
-                    title="Undergraduate Student in Psychology"
-                    subtitle="Third-year psychology student with a focus on behavioral studies and applied research."
-                    year="2022 – Present"
-                />
-                <AcademicCard
-                    title="Undergraduate Student in Psychology"
-                    subtitle="Third-year psychology student with a focus on behavioral studies and applied research."
-                    year="2022 – Present"
-                />
+                {loading ? (
+                    <p>Loading...</p>
+                ) : academics.length > 0 ? (
+                    academics.map((academic) => (
+                        <AcademicCard
+                            key={academic._id}
+                            title={academic.degree}
+                            subtitle={academic.institution}
+                            year={`${academic.yearStart} – ${academic.yearEnd}`}
+                        />
+                    ))
+                ) : (
+                    <p>No academic records found.</p>
+                )}
             </div>
 
         </div>

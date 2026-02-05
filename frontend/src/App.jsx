@@ -10,6 +10,7 @@ import AchievementsSection from './pages/AchievementsSection.jsx';
 import PublicationsSection from './pages/PublicationsSection.jsx';
 import GallerySection from "./pages/GallerySection.jsx";
 import Footer from './pages/Footer.jsx';
+import ExperienceSection from './pages/ExperienceSection.jsx';
 
 const App = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -61,6 +62,10 @@ const App = () => {
       {/* ACHIEVEMENTS */}
       <section id="achievements">
         <AchievementsSection />
+      </section>
+
+      <section id="experience">
+        <ExperienceSection />
       </section>
 
       {/* PUBLICATIONS */}
