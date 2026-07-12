@@ -65,7 +65,7 @@ const HeroSectionMobile = () => {
                     <div className="text-black text-sm leading-relaxed max-w-md">
                         <p>
                             Exploring the human mind through research, and expressing it through dance.
-                            Third-year Psychology student, Research Associate, and Indian Classical Dancer on a journey where science and art converge.
+                            Psychology student, Research Associate, and Indian Classical Dancer on a journey where science and art converge.
                         </p>
                     </div>
                 </div>

@@ -3,6 +3,9 @@ import AchievementPaperCard from "../components/AchievementPaperCard.jsx";
 import SectionHeader from "../components/SectionHeader.jsx";
 import { sanityClient, urlFor } from '../sanityClient.js'; // Adjust path as needed
 
+
+
+
 const AchievementsSection = () => {
     const [achievements, setAchievements] = useState([]);
     const [loading, setLoading] = useState(true);

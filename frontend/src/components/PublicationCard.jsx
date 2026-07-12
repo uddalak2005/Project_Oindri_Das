@@ -15,7 +15,7 @@ const PublicationCard = ({
             >
                 {/* Image */}
 
-                <div className="w-full h-[200px] sm:h-[300px] overflow-hidden border border-black/20">
+                <div className="w-full h-[200px] sm:h-[300px] overflow-hidden">
                     <img
                         src={image}
                         alt={title}

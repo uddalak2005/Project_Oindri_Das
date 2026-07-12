@@ -46,7 +46,7 @@ const HeroSection = () => {
                         <div className="w-2/3 p-3 text-xl">
                             <p className="text-black text-left">
                                 Exploring the human mind through research, and expressing it through dance.
-                                Third-year Psychology student, Research Associate, and Indian Classical Dancer on a journey where science and art converge.
+                                Psychology student, Research Associate, and Indian Classical Dancer on a journey where science and art converge.
                             </p>
                         </div>
                         <div className="mt-40 p-3 flex items-center">
